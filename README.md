@@ -1,6 +1,6 @@
 # 2D Trigonometry Calculator
 
-This simple app was created to exemplify OOP and include a Menu Helper class to create prompt options for the user.
+This simple app was created to exemplify OOP and includes a Menu Helper class to create prompt options for the user.
 
 The following steps are executed:
 
