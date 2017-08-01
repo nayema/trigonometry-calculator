@@ -10,13 +10,6 @@ public class TriangleCalculateAll extends Triangle {
         double distanceAB = distance(pointA, pointB);
         double distanceAC = distance(pointA, pointC);
         double distanceBC = distance(pointB, pointC);
-
-        double angleA = angle(distanceBC, distanceAC, distanceAB);
-        double angleB = angle(distanceAC, distanceAB, distanceBC);
-        double angleC = 180 - (angleA + angleB);
-
-        double area = area(distanceAB, distanceBC, distanceAC);
-
         System.out.println(" ");
         System.out.println("Distance of Sides");
         System.out.println("#############################");
@@ -24,6 +17,9 @@ public class TriangleCalculateAll extends Triangle {
         System.out.println("Point A to C: " + formatter.format(distanceAC));
         System.out.println("Point B to C: " + formatter.format(distanceBC));
 
+        double angleA = angle(distanceBC, distanceAC, distanceAB);
+        double angleB = angle(distanceAC, distanceAB, distanceBC);
+        double angleC = 180 - (angleA + angleB);
         System.out.println(" ");
         System.out.println("Angle at each Point:");
         System.out.println("#############################");
@@ -31,6 +27,7 @@ public class TriangleCalculateAll extends Triangle {
         System.out.println("Angle B: " + formatter.format(angleB));
         System.out.println("Angle C: " + formatter.format(angleC));
 
+        double area = area(distanceAB, distanceBC, distanceAC);
         System.out.println(" ");
         System.out.println("Area: " + formatter.format(area));
 
