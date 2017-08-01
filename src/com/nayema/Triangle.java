@@ -53,8 +53,7 @@ public class Triangle {
         double distanceAC = distance(pointA, pointC);
         double distanceBC = distance(pointB, pointC);
 
-        double s = 0.5 * (distanceAB + distanceAC + distanceBC);
-        double area = Math.sqrt(s * (s - distanceAB) * (s - distanceAC) * (s - distanceBC));
+        double area = area(distanceAB, distanceBC, distanceAC);
 
         System.out.println("Area: " + formatter.format(area));
     }
@@ -101,31 +100,28 @@ public class Triangle {
         }
     }
 
-    public void calculateAll() {
-        this.calculateDistances();
-        this.calculateAngles();
-        this.calculateArea();
-        this.determineTriangleType();
-        this.determineAngleType();
-    }
-
-    private Point pointPrompt(String pointName) {
+    protected Point pointPrompt(String pointName) {
         double x = coordinatePrompt("x", pointName);
         double y = coordinatePrompt("y", pointName);
         return new Point(x, y);
     }
 
-    private double coordinatePrompt(String coordinate, String point) {
+    protected double coordinatePrompt(String coordinate, String point) {
         System.out.println("What is the " + coordinate + " coordinate for Point " + point + "?");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextDouble();
     }
 
-    private double distance(Point starting, Point ending) {
+    protected double distance(Point starting, Point ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
     }
 
-    private double angle(double a, double b, double c) {
+    protected double angle(double a, double b, double c) {
         return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2)) / (2 * a * b * c));
+    }
+
+    protected double area(double a, double b, double c) {
+        double s = 0.5 * (a + b + c);
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 }

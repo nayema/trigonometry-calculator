@@ -7,6 +7,14 @@
 # BlueJ files
 *.ctxt
 
+# IntelliJ project files
+.idea/
+*.iml
+
+gen### Java template
+# Compiled class file
+*.class
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
