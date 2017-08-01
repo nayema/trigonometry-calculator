@@ -112,15 +112,15 @@ public class Triangle {
         return scanner.nextDouble();
     }
 
-    protected double distance(Point starting, Point ending) {
+    protected final double distance(Point starting, Point ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
     }
 
-    protected double angle(double a, double b, double c) {
+    protected final double angle(double a, double b, double c) {
         return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2)) / (2 * a * b * c));
     }
 
-    protected double area(double a, double b, double c) {
+    protected final double area(double a, double b, double c) {
         double s = 0.5 * (a + b + c);
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
