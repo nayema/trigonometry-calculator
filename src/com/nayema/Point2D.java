@@ -1,9 +1,9 @@
 package com.nayema;
 
-public class Point {
+public class Point2D {
     double x, y;
 
-    public Point(double x, double y) {
+    public Point2D(double x, double y) {
         this.x = x;
         this.y = y;
     }

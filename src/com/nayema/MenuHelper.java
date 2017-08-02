@@ -23,17 +23,6 @@ public class MenuHelper {
         this.registeredCommands.add(new Command(commandName, commandToRun));
     }
 
-    public int promptForCommand() {
-        System.out.println("\nPlease select a command:");
-
-        for (int i = 0; i < registeredCommands.size(); i++) {
-            System.out.println(i + ") " + registeredCommands.get(i).name);
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
-    }
-
     public void runInLoop() {
         int commandSelected;
         while (true) {
@@ -45,6 +34,17 @@ public class MenuHelper {
             Runnable commandToRun = registeredCommands.get(commandSelected).commandToRun;
             commandToRun.run();
         }
+    }
+
+    public int promptForCommand() {
+        System.out.println("\nPlease select a command:");
+
+        for (int i = 0; i < registeredCommands.size(); i++) {
+            System.out.println(i + ") " + registeredCommands.get(i).name);
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 
     private class Command {
