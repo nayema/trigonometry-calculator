@@ -1,8 +1,8 @@
 package com.nayema;
 
-import java.text.DecimalFormat;
+import java.util.Scanner;
 
-public class Triangle3D extends Triangle2D {
+public class Triangle3D extends Triangle {
     public void calculateDistances() {
         Point3D pointA = pointPrompt("a");
         Point3D pointB = pointPrompt("b");
@@ -11,8 +11,6 @@ public class Triangle3D extends Triangle2D {
         double distanceAB = distance(pointA, pointB);
         double distanceAC = distance(pointA, pointC);
         double distanceBC = distance(pointB, pointC);
-
-        DecimalFormat formatter = new DecimalFormat("0.00");
 
         System.out.println("Distance of Sides");
         System.out.println("#############################");
@@ -85,14 +83,29 @@ public class Triangle3D extends Triangle2D {
         System.out.println("Area: " + formatter.format(area));
     }
 
-    protected Point3D pointPrompt(String pointName) {
+    private Point3D pointPrompt(String pointName) {
         double x = coordinatePrompt("x", pointName);
         double y = coordinatePrompt("y", pointName);
         double z = coordinatePrompt("z", pointName);
         return new Point3D(x, y, z);
     }
 
-    protected double distance(Point3D starting, Point3D ending) {
+    private double coordinatePrompt(String coordinate, String point) {
+        System.out.println("What is the " + coordinate + " coordinate for Point " + point + "?");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextDouble();
+    }
+
+    private double distance(Point3D starting, Point3D ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2) + Math.pow(ending.z - starting.z, 2));
+    }
+
+    private double angle(double a, double b, double c) {
+        return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2)) / (2 * a * b * c));
+    }
+
+    private double area(double a, double b, double c) {
+        double s = 0.5 * (a + b + c);
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 }
