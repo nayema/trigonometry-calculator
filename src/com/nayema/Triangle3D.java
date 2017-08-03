@@ -88,6 +88,7 @@ public class Triangle3D extends Triangle {
         return new Point3D(x, y, z);
     }
 
+    //TODO
     protected double distance(Point3D starting, Point3D ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2) + Math.pow(ending.z - starting.z, 2));
     }

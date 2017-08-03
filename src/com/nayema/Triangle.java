@@ -22,6 +22,7 @@ abstract class Triangle {
         return scanner.nextDouble();
     }
 
+    //TODO
     //protected abstract double distance(Point starting, Point ending);
 
     protected final double angle(double a, double b, double c) {

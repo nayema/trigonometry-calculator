@@ -107,6 +107,7 @@ public class Triangle2D extends Triangle implements TriangleType {
         return new Point2D(x, y);
     }
 
+    //TODO
     protected double distance(Point2D starting, Point2D ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
     }
