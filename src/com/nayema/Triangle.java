@@ -3,7 +3,7 @@ package com.nayema;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-abstract public class Triangle {
+abstract class Triangle {
     DecimalFormat formatter = new DecimalFormat("0.00");
 
     public abstract void calculateDistances();
