@@ -145,28 +145,13 @@ public class Triangle2D extends Triangle {
         }
     }
 
-    private Point2D pointPrompt(String pointName) {
+    protected Point2D pointPrompt(String pointName) {
         double x = coordinatePrompt("x", pointName);
         double y = coordinatePrompt("y", pointName);
         return new Point2D(x, y);
     }
 
-    private double coordinatePrompt(String coordinate, String point) {
-        System.out.println("What is the " + coordinate + " coordinate for Point " + point + "?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextDouble();
-    }
-
-    private double distance(Point2D starting, Point2D ending) {
+    protected double distance(Point2D starting, Point2D ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
-    }
-
-    private double angle(double a, double b, double c) {
-        return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2)) / (2 * a * b * c));
-    }
-
-    private double area(double a, double b, double c) {
-        double s = 0.5 * (a + b + c);
-        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 }
