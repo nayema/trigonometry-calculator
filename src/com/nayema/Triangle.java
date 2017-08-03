@@ -14,7 +14,7 @@ abstract public class Triangle {
 
     public abstract void calculateAll();
 
-    protected abstract Object pointPrompt(String pointName);
+    protected abstract Point pointPrompt(String pointName);
 
     protected final double coordinatePrompt(String coordinate, String point) {
         System.out.println("What is the " + coordinate + " coordinate for Point " + point + "?");
