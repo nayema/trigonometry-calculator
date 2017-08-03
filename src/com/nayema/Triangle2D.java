@@ -1,8 +1,6 @@
 package com.nayema;
 
-import java.util.Scanner;
-
-public class Triangle2D extends Triangle {
+public class Triangle2D extends Triangle implements TriangleType {
     public void calculateDistances() {
         Point2D pointA = pointPrompt("a");
         Point2D pointB = pointPrompt("b");
@@ -51,48 +49,6 @@ public class Triangle2D extends Triangle {
         double area = area(distanceAB, distanceBC, distanceAC);
 
         System.out.println("Area: " + formatter.format(area));
-    }
-
-    public void determineTriangleType() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
-
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        if ((distanceAB == distanceBC) || (distanceAB == distanceAC) || (distanceBC == distanceAC)) {
-            System.out.println("This is an Isosceles Triangle");
-        } else if ((distanceAB == distanceBC && distanceBC == distanceAC)) {
-            System.out.println("This is an Equilateral Triangle");
-        } else {
-            System.out.println("This is a Scalene Triangle");
-        }
-    }
-
-    public void determineAngleType() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
-
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        double angleA = angle(distanceBC, distanceAC, distanceAB);
-        double angleB = angle(distanceAC, distanceAB, distanceBC);
-        double angleC = 180 - (angleA + angleB);
-
-        if (angleA < 90 && angleB < 90 && angleC < 90) {
-            System.out.println("This is an Acute Angle Triangle");
-        } else if (angleA == 90 || angleB == 90 || angleC == 90) {
-            System.out.println("This is a Right Angle Triangle");
-        } else if (angleA > 90 || angleB > 90 || angleC > 90) {
-            System.out.println("This is an Obtuse Angle Triangle");
-        } else {
-            System.out.println("Error");
-        }
     }
 
     public void calculateAll() {
@@ -153,5 +109,47 @@ public class Triangle2D extends Triangle {
 
     protected double distance(Point2D starting, Point2D ending) {
         return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
+    }
+
+    public void determineTriangleType() {
+        Point2D pointA = pointPrompt("a");
+        Point2D pointB = pointPrompt("b");
+        Point2D pointC = pointPrompt("c");
+
+        double distanceAB = distance(pointA, pointB);
+        double distanceAC = distance(pointA, pointC);
+        double distanceBC = distance(pointB, pointC);
+
+        if ((distanceAB == distanceBC) || (distanceAB == distanceAC) || (distanceBC == distanceAC)) {
+            System.out.println("This is an Isosceles Triangle");
+        } else if ((distanceAB == distanceBC && distanceBC == distanceAC)) {
+            System.out.println("This is an Equilateral Triangle");
+        } else {
+            System.out.println("This is a Scalene Triangle");
+        }
+    }
+
+    public void determineAngleType() {
+        Point2D pointA = pointPrompt("a");
+        Point2D pointB = pointPrompt("b");
+        Point2D pointC = pointPrompt("c");
+
+        double distanceAB = distance(pointA, pointB);
+        double distanceAC = distance(pointA, pointC);
+        double distanceBC = distance(pointB, pointC);
+
+        double angleA = angle(distanceBC, distanceAC, distanceAB);
+        double angleB = angle(distanceAC, distanceAB, distanceBC);
+        double angleC = 180 - (angleA + angleB);
+
+        if (angleA < 90 && angleB < 90 && angleC < 90) {
+            System.out.println("This is an Acute Angle Triangle");
+        } else if (angleA == 90 || angleB == 90 || angleC == 90) {
+            System.out.println("This is a Right Angle Triangle");
+        } else if (angleA > 90 || angleB > 90 || angleC > 90) {
+            System.out.println("This is an Obtuse Angle Triangle");
+        } else {
+            System.out.println("Error");
+        }
     }
 }

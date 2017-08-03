@@ -1,7 +1,5 @@
 package com.nayema;
 
-import java.util.Scanner;
-
 public class Triangle3D extends Triangle {
     public void calculateDistances() {
         Point3D pointA = pointPrompt("a");
