@@ -1,51 +1,19 @@
 package com.nayema;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Triangle2DMenu implements TriangleCalculator, TriangleType {
+public class Triangle2DMenu implements TriangleCalculator {
+    DecimalFormat formatter = new DecimalFormat("0.00");
+
     private Triangle2D cachedTriangle;
 
-    //TODO
     public void calculateAll() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
-
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-        System.out.println();
-        printDistances(distanceAB, distanceAC, distanceBC);
-
-        double angleA = angle(distanceBC, distanceAC, distanceAB);
-        double angleB = angle(distanceAC, distanceAB, distanceBC);
-        double angleC = 180 - (angleA + angleB);
-        System.out.println();
-        printAngles(angleA, angleB, angleC);
-
-        double area = area(distanceAB, distanceBC, distanceAC);
-        System.out.println();
-        printArea(area);
-
-        System.out.println();
-        if ((distanceAB == distanceBC) || (distanceAB == distanceAC) || (distanceBC == distanceAC)) {
-            System.out.println("This is an Isosceles TriangleCalculator");
-        } else if ((distanceAB == distanceBC && distanceBC == distanceAC)) {
-            System.out.println("This is an Equilateral TriangleCalculator");
-        } else {
-            System.out.println("This is a Scalene TriangleCalculator");
-        }
-
-        System.out.println(" ");
-        if (angleA < 90 && angleB < 90 && angleC < 90) {
-            System.out.println("This is an Acute Angle TriangleCalculator");
-        } else if (angleA == 90 || angleB == 90 || angleC == 90) {
-            System.out.println("This is a Right Angle TriangleCalculator");
-        } else if (angleA > 90 || angleB > 90 || angleC > 90) {
-            System.out.println("This is an Obtuse Angle TriangleCalculator");
-        } else {
-            System.out.println("Error");
-        }
+        calculateDistances();
+        calculateAngles();
+        calculateArea();
+        determineDistanceType();
+        determineAngleType();
     }
 
     public void calculateDistances() {
@@ -54,80 +22,28 @@ public class Triangle2DMenu implements TriangleCalculator, TriangleType {
         printDistances(triangle.getDistanceAB(), triangle.getDistanceAC(), triangle.getDistanceBC());
     }
 
-    //TODO
     public void calculateAngles() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
+        Triangle2D triangle = getOrPromptForTriangle();
 
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        double angleA = angle(distanceBC, distanceAC, distanceAB);
-        double angleB = angle(distanceAC, distanceAB, distanceBC);
-        double angleC = 180 - (angleA + angleB);
-
-        printAngles(angleA, angleB, angleC);
+        printAngles(triangle.getAngleA(), triangle.getAngleB(), triangle.getAngleC());
     }
 
-    //TODO
     public void calculateArea() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
+        Triangle2D triangle = getOrPromptForTriangle();
 
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        double area = area(distanceAB, distanceBC, distanceAC);
-
-        printArea(area);
+        printArea(triangle.getArea());
     }
 
-    //TODO
-    public void determineTriangleType() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
+    public void determineDistanceType() {
+        Triangle2D triangle = getOrPromptForTriangle();
 
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        if ((distanceAB == distanceBC) || (distanceAB == distanceAC) || (distanceBC == distanceAC)) {
-            System.out.println("This is an Isosceles TriangleCalculator");
-        } else if ((distanceAB == distanceBC && distanceBC == distanceAC)) {
-            System.out.println("This is an Equilateral TriangleCalculator");
-        } else {
-            System.out.println("This is a Scalene TriangleCalculator");
-        }
+        printDistanceType(triangle);
     }
 
-    //TODO
     public void determineAngleType() {
-        Point2D pointA = pointPrompt("a");
-        Point2D pointB = pointPrompt("b");
-        Point2D pointC = pointPrompt("c");
+        Triangle2D triangle = getOrPromptForTriangle();
 
-        double distanceAB = distance(pointA, pointB);
-        double distanceAC = distance(pointA, pointC);
-        double distanceBC = distance(pointB, pointC);
-
-        double angleA = angle(distanceBC, distanceAC, distanceAB);
-        double angleB = angle(distanceAC, distanceAB, distanceBC);
-        double angleC = 180 - (angleA + angleB);
-
-        if (angleA < 90 && angleB < 90 && angleC < 90) {
-            System.out.println("This is an Acute Angle TriangleCalculator");
-        } else if (angleA == 90 || angleB == 90 || angleC == 90) {
-            System.out.println("This is a Right Angle TriangleCalculator");
-        } else if (angleA > 90 || angleB > 90 || angleC > 90) {
-            System.out.println("This is an Obtuse Angle TriangleCalculator");
-        } else {
-            System.out.println("Error");
-        }
+        printAngleType(triangle);
     }
 
     private Triangle2D getOrPromptForTriangle() {
@@ -153,19 +69,6 @@ public class Triangle2DMenu implements TriangleCalculator, TriangleType {
         return scanner.nextDouble();
     }
 
-    private double distance(Point2D starting, Point2D ending) {
-        return Math.sqrt(Math.pow(ending.x - starting.x, 2) + Math.pow(ending.y - starting.y, 2));
-    }
-
-    private double angle(double a, double b, double c) {
-        return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2)) / (2 * a * b * c));
-    }
-
-    private double area(double a, double b, double c) {
-        double s = 0.5 * (a + b + c);
-        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
-    }
-
     private void printDistances(double distanceAB, double distanceAC, double distanceBC) {
         System.out.println("Distance of Sides");
         System.out.println("#############################");
@@ -184,5 +87,27 @@ public class Triangle2DMenu implements TriangleCalculator, TriangleType {
 
     private void printArea(double area) {
         System.out.println("Area: " + formatter.format(area));
+    }
+
+    private void printDistanceType(Triangle2D triangle) {
+        if ((triangle.getDistanceAB() == triangle.getDistanceBC()) || (triangle.getDistanceAB() == triangle.getDistanceAC()) || (triangle.getDistanceBC() == triangle.getDistanceAC())) {
+            System.out.println("This is an Isosceles TriangleCalculator");
+        } else if ((triangle.getDistanceAB() == triangle.getDistanceBC() && triangle.getDistanceBC() == triangle.getDistanceAC())) {
+            System.out.println("This is an Equilateral TriangleCalculator");
+        } else {
+            System.out.println("This is a Scalene TriangleCalculator");
+        }
+    }
+
+    private void printAngleType(Triangle2D triangle) {
+        if (triangle.getAngleA() < 90 && triangle.getAngleB() < 90 && triangle.getAngleC() < 90) {
+            System.out.println("This is an Acute Angle TriangleCalculator");
+        } else if (triangle.getAngleA() == 90 || triangle.getAngleB() == 90 || triangle.getAngleC() == 90) {
+            System.out.println("This is a Right Angle TriangleCalculator");
+        } else if (triangle.getAngleA() > 90 || triangle.getAngleB() > 90 || triangle.getAngleC() > 90) {
+            System.out.println("This is an Obtuse Angle TriangleCalculator");
+        } else {
+            System.out.println("Error");
+        }
     }
 }
