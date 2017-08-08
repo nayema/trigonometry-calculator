@@ -1,6 +1,6 @@
 package com.nayema;
 
-public class Point3D extends Point {
+public class Point3D {
     double x, y, z;
 
     public Point3D(double x, double y, double z) {
