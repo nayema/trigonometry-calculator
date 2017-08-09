@@ -1,14 +1,12 @@
 package com.nayema;
 
-public class Triangle3D {
+public class Triangle3D extends Triangle2D {
     Point3D pointA;
     Point3D pointB;
     Point3D pointC;
 
     public Triangle3D(Point3D pointA, Point3D pointB, Point3D pointC) {
-        this.pointA = pointA;
-        this.pointB = pointB;
-        this.pointC = pointC;
+        super(pointA, pointB, pointC);
     }
 
     public double getDistanceAB() {
