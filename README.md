@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b299cf9c9e8841bd9d4ccfc6c510cddf)](https://www.codacy.com/app/nayema/trigonometry-calculator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nayema/trigonometry-calculator&amp;utm_campaign=Badge_Grade)
+
 # Trigonometry Calculator
 
 This simple app was created to exemplify OOP and includes a Menu Helper class to create prompt options for the user.
